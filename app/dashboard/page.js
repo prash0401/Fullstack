@@ -1,11 +1,21 @@
-export default async function Dashboard() {
-  const response = await fetch("http://localhost:8000/dashboard", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    revalidate: 10,
-  });
+import Pagination from "../components/pagination";
+
+export default async function Dashboard({ searchParams }) {
+  console.log("searchParams", searchParams);
+  const page = searchParams.page;
+  const itemsPerPage = 10;
+  const response = await fetch(
+    `http://localhost:8000/dashboard?page=${page}&limit=${itemsPerPage}`,
+
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      revalidate: 10,
+    }
+  );
   const movieData = await response.json();
 
   if (!movieData?.movies) {
@@ -37,6 +47,7 @@ export default async function Dashboard() {
           </li>
         ))}
       </ul>
+      <Pagination />
     </>
   );
 }

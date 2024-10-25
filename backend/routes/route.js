@@ -9,8 +9,12 @@ router.post("/signup", validation.signupValidation, AuthController.singup);
 
 router.post("/login", AuthController.login);
 
-// router.get("/dashboard", isAuth, DashboardController.getMovies);
-router.get(
+// router.get(
+//   "/dashboard",
+//   //  isAuth,
+//   DashboardController.getMovies
+// );
+router.post(
   "/dashboard",
   // isAuth,
   DashboardController.getMoviesByYearAndRuntimeWithPagination
