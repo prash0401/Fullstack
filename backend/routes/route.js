@@ -9,11 +9,14 @@ router.post("/signup", validation.signupValidation, AuthController.singup);
 
 router.post("/login", AuthController.login);
 
-// router.get(
-//   "/dashboard",
-//   //  isAuth,
-//   DashboardController.getMovies
-// );
+router.get(
+  "/movies",
+  //  isAuth,
+  DashboardController.getMovies
+);
+
+router.get("/movies/:id", DashboardController.getMoviesById);
+
 router.post(
   "/dashboard",
   // isAuth,

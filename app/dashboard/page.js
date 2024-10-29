@@ -1,11 +1,12 @@
 import Pagination from "../components/pagination";
 
 export default async function Dashboard({ searchParams }) {
-  console.log("searchParams", searchParams);
   const page = searchParams.page;
   const itemsPerPage = 10;
   const response = await fetch(
-    `http://localhost:8000/dashboard?page=${page}&limit=${itemsPerPage}`,
+    `http://localhost:8000/dashboard`,
+
+    // `http://localhost:8000/dashboard?page=${page}&limit=${itemsPerPage}`,
 
     {
       method: "GET",
@@ -17,6 +18,7 @@ export default async function Dashboard({ searchParams }) {
     }
   );
   const movieData = await response.json();
+  console.log("movieData", movieData);
 
   if (!movieData?.movies) {
     return <p>...loading</p>;
